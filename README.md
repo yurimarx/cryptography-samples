@@ -65,7 +65,7 @@ Enter HALT or H (not case-sensitive)
 # Credits
 1. https://community.intersystems.com/post/format-public-key-when-using-rsaencrypt-method-systemencryption-or-systemencryptionrsaencrypt
 
-2.https://openexchange.intersystems.com/package/intersystems-iris-dev-template
+2. https://openexchange.intersystems.com/package/intersystems-iris-dev-template
 
-3.https://stackoverflow.com/questions/26029597/openssl-x509-certificate-with-own-rsa-public-key-information
+3. https://stackoverflow.com/questions/26029597/openssl-x509-certificate-with-own-rsa-public-key-information
 
