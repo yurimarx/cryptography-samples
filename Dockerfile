@@ -20,6 +20,15 @@ COPY Installer.cls Installer.cls
 COPY module.xml module.xml
 COPY iris.script iris.script
 
+# config file to generate openssl certificate
+COPY example-com.conf example-com.conf
+
+# to use with symmetric encrypt/decrypt
+ENV SECRETKEY=InterSystemsIRIS
+
+# to use with asymmetric encrypt/decrypt
+RUN openssl req  -new -x509 -sha256 -config example-com.conf -newkey rsa:2048 -nodes -keyout example-com.key.pem  -days 365 -out example-com.cert.pem
+
 RUN iris start IRIS \
 	&& iris session IRIS < iris.script \
     && iris stop IRIS quietly
