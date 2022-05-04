@@ -81,7 +81,40 @@ ClassMethod DoHash(plaintext As %String) As %Status
     // hash a text
     Set hashtext = $SYSTEM.Encryption.MD5Hash(text)
     
-    Write $SYSTEM.Encryption.Base64Encode(hashtext)
+    Set base64text = $SYSTEM.Encryption.Base64Encode(hashtext)
+
+    // convert to hex text to following best practices
+    Set hextext = ..GetHexText(base64text)
+
+    // return using lowercase
+    Write $ZCONVERT(hextext,"L")
+}
+
+// Hash using SHA 
+
+ClassMethod DoSHAHash(plaintext As %String) As %Status
+{
+    // convert to utf-8
+    Set text=$ZCONVERT(plaintext,"O","UTF8")
+    
+    // hash a text
+    Set hashtext = $SYSTEM.Encryption.SHA3Hash(256, text)
+    
+    Set base64text = $SYSTEM.Encryption.Base64Encode(hashtext)
+
+    // convert to hex text to following best practices
+    Set hextext = ..GetHexText(base64text)
+
+    // return using lowercase
+    Write $ZCONVERT(hextext,"L")
+}
+
+// thanks sean connelly 
+
+ClassMethod GetHexText(plaintext As %String) As %String
+{
+    set hex="" for i=1:1:$l(plaintext) set hex=hex_$zhex($ascii($e(plaintext,i)))
+    Return hex
 }
 
 }
